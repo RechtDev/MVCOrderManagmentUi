@@ -23,14 +23,23 @@ namespace MVCOrderManagmentUi.Controllers
             {
                 ActiveCarts = _context.ShoppingCarts.Count(),
                 ItemsInCarts = _context.ShoppingCartContents.Count(),
-                PotentialSales = _context.ShoppingCartContents.Include(x => x.Prod).Sum(x => x.Prod.ProdPrice)
+                PotentialSales = _context.ShoppingCartContents.Include(x => x.Prod).Sum(x => x.Prod.ProdPrice),
+                ShoppingCarts = new List<ShoppingCart>()
             };
+
+            var result = _context.ShoppingCartContents.Include(x => x.ShoppingCart).Include(x => x.Prod).ToList();
+            DTO.ShoppingCarts = from cart in result
+                              group cart by cart.ShoppingCartId;
+            var queryResult = _context.ShoppingCartContents.Include(x => x.Prod);
+            DTO.MostAddedItemToCart = (from prods in queryResult.AsEnumerable()
+                                      group prods by prods.Prod.ProdName into newgroup
+                                      orderby newgroup.Count() descending
+                                      select new {newgroup.Key, count = newgroup.Count() }).Take(1);
             return View(DTO);
         }
         public IActionResult ShowAllShoppingCarts()
         {
-            var shoppingCarts = _context.ShoppingCartContents.Include(x => x.ShoppingCart).Include(x => x.Prod).ToList();
-            return View(shoppingCarts);
+            return View();
         }
     }
 }

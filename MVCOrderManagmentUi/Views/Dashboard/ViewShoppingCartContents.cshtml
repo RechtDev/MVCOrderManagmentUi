@@ -1,20 +1,39 @@
-﻿@using Models
-@model List<ShoppingCartContent>
+﻿@model MVCOrderManagmentUi.Data.DashboardDTO
 <link rel="stylesheet" href="~/css/DashboardStyles.css" />
-<h2 class="customer-list-heading">Customers Carts</h2> 
+<h2 class="customer-list-heading">Customers Carts</h2>
 
 <div class="cust-cart-display">
-    <table>
+    <table class="main-order-table">
         <thead>
             <tr>
-                <td>Cart ID</td>
+                <td>Cart ID#</td>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var cart in Model.ShoppingCarts)
             {
-                <tr>
-                    <td>@item.ShoppingCartId</td>
+                <tr class="cartIdRow">
+                    <td>
+                        <p class="row-text"><button class="dropdown-icon-arrow-btn"><i class="fa-solid fa-angles-down"></i></button>@cart.Key</p>
+                        <table class="cart-item-table cart-item-table-style">
+                            <thead>
+                                <tr>
+                                    <td>Item Name</td>
+                                    <td>Cost</td>
+                                    <td>Item Type</td>
+                                </tr>
+                            </thead>
+                            @foreach (var item in cart)
+                            {
+                        <tr>
+                            <td>@item.Prod.ProdName</td>
+                            <td>@item.Prod.ProdPrice.ToString("C")</td>
+                            <td>@item.Prod.ProdType</td>
+                        </tr>
+                            }
+                        </table>
+                    </td>
+                    
                 </tr>
             }
         </tbody>

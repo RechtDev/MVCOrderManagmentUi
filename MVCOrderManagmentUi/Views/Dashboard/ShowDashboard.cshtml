@@ -17,7 +17,10 @@
         <p>@Model.ItemsInCarts</p>
         <h4>Poetential Sold</h4>
     </div>
+    @*<div class="dashboard-tile">
+        <p>@Model.MostAddedItemToCart[0].Key</p>
+        <h4>#1 Item Added To Cart</h4>
+    </div>*@
 </div>
-
-@await Html.RenderPartialAsync("ViewShoppingCartContents",)
+<partial name="ViewShoppingCartContents">
 
