@@ -1,0 +1,22 @@
+﻿@using Models
+@model List<ShoppingCartContent>
+<link rel="stylesheet" href="~/css/DashboardStyles.css" />
+<h2 class="customer-list-heading">Customers Carts</h2> 
+
+<div class="cust-cart-display">
+    <table>
+        <thead>
+            <tr>
+                <td>Cart ID</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ShoppingCartId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>   

@@ -1,0 +1,23 @@
+﻿@model MVCOrderManagmentUi.Data.DashboardDTO
+@using Models
+@{
+    ViewData["Title"] = "ShowDashboard";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<div class="three-dashboard-tiles">
+    <div class="dashboard-tile">
+        <p>@Model.PotentialSales.ToString("C")</p>
+        <h4>Total Price</h4>
+    </div>
+    <div class="dashboard-tile">
+        <p>@Model.ActiveCarts</p>
+        <h4>Active Carts</h4>
+    </div>
+    <div class="dashboard-tile">
+        <p>@Model.ItemsInCarts</p>
+        <h4>Poetential Sold</h4>
+    </div>
+</div>
+
+@await Html.RenderPartialAsync("ViewShoppingCartContents",)
+
