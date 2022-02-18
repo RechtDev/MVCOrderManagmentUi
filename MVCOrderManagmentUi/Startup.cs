@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace MVCOrderManagmentUi
 {
@@ -55,6 +56,9 @@ namespace MVCOrderManagmentUi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(name: "ProductPage",
+                    pattern: "Product/ViewProducts",
+                    defaults: new {controller = "Product", action = "ViewProducts"});
                 endpoints.MapControllerRoute(name: "default",
 pattern: "{controller=Home}/{action=Index}/{id?}");
             });

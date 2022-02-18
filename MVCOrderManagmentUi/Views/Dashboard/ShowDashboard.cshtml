@@ -27,16 +27,33 @@
         </section>
         <section class="metrics-tab metrics-tab-disabled" role="tab">
             <div class="dashboard-tile">
+                @foreach (var item in Model.MostAddedItemToCart)
+                {
+                    <p>@item.Key</p>
+                }
+                <h4>Most Added Item</h4>
+            </div>
+            <div class="dashboard-tile">
                 <p>Testing1</p>
-                <h4>Total Price</h4>
+                <h4>Future Metrics</h4>
             </div>
             <div class="dashboard-tile">
                 <p>Testing2</p>
-                <h4>Active Carts</h4>
+                <h4>Future Metrics</h4>
+            </div>
+        </section>
+        <section class="metrics-tab metrics-tab-disabled" role="tab">
+            <div class="dashboard-tile">
+                <p>Testing1</p>
+                <h4>Future Metrics</h4>
+            </div>
+            <div class="dashboard-tile">
+                <p>Testing2</p>
+                <h4>Future Metrics</h4>
             </div>
             <div class="dashboard-tile">
                 <p>Testing3</p>
-                <h4>Poetential Sold</h4>
+                <h4>Future Metrics</h4>
             </div>
         </section>
         <div class="metrics-tab-button">
@@ -52,4 +69,3 @@
     </div>
 </div>>
 <partial name="_ViewShoppingCartContents">
-

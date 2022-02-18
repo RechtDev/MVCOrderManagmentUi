@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/DashboardStyles.css" />
+    <link href="~/css/ProductStyles.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -25,6 +26,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="ShowDashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="ViewProducts" asp-route-filterby="none">Products</a>
                         </li>
                     </ul>
                 </div>
