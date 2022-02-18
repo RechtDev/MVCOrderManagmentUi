@@ -4,23 +4,52 @@
     ViewData["Title"] = "ShowDashboard";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-<div class="three-dashboard-tiles">
-    <div class="dashboard-tile">
-        <p>@Model.PotentialSales.ToString("C")</p>
-        <h4>Total Price</h4>
+<div class="metric-tab-container">
+    <div class="three-dashboard-tiles">
+        <div class="metrics-tab-button">
+            <button id="metricPanelLeftBtn">
+                <i class="fa-solid fa-chevron-left metrics-tab-button-left"></i>
+            </button>
+        </div>
+        <section class="metrics-tab" role="tab">
+            <div class="dashboard-tile">
+                <p>@Model.PotentialSales.ToString("C")</p>
+                <h4>Total Price</h4>
+            </div>
+            <div class="dashboard-tile">
+                <p>@Model.ActiveCarts</p>
+                <h4>Active Carts</h4>
+            </div>
+            <div class="dashboard-tile">
+                <p>@Model.ItemsInCarts</p>
+                <h4>Poetential Sold</h4>
+            </div>
+        </section>
+        <section class="metrics-tab metrics-tab-disabled" role="tab">
+            <div class="dashboard-tile">
+                <p>Testing1</p>
+                <h4>Total Price</h4>
+            </div>
+            <div class="dashboard-tile">
+                <p>Testing2</p>
+                <h4>Active Carts</h4>
+            </div>
+            <div class="dashboard-tile">
+                <p>Testing3</p>
+                <h4>Poetential Sold</h4>
+            </div>
+        </section>
+        <div class="metrics-tab-button">
+            <button id="metricPanelRightBtn">
+                <i class="fa-solid fa-chevron-right metrics-tab-button-right"></i>
+            </button>
+        </div>
     </div>
-    <div class="dashboard-tile">
-        <p>@Model.ActiveCarts</p>
-        <h4>Active Carts</h4>
+    <div class="metrics-tab-selected">
+        <span class="current"><i class="fa-solid fa-grip-lines"></i></span>
+        <span><i class="fa-solid fa-grip-lines"></i></span>
+        <span><i class="fa-solid fa-grip-lines"></i></span>
     </div>
-    <div class="dashboard-tile">
-        <p>@Model.ItemsInCarts</p>
-        <h4>Poetential Sold</h4>
-    </div>
-    @*<div class="dashboard-tile">
-        <p>@Model.MostAddedItemToCart[0].Key</p>
-        <h4>#1 Item Added To Cart</h4>
-    </div>*@
-</div>
-<partial name="ViewShoppingCartContents">
+</div>>
+<partial name="_ViewShoppingCartContents">
 

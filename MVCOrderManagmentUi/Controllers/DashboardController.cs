@@ -32,9 +32,7 @@ namespace MVCOrderManagmentUi.Controllers
                               group cart by cart.ShoppingCartId;
             var queryResult = _context.ShoppingCartContents.Include(x => x.Prod);
             DTO.MostAddedItemToCart = (from prods in queryResult.AsEnumerable()
-                                      group prods by prods.Prod.ProdName into newgroup
-                                      orderby newgroup.Count() descending
-                                      select new {newgroup.Key, count = newgroup.Count() }).Take(1);
+                                       group prods by prods.Prod.ProdName).Take(1);
             return View(DTO);
         }
         public IActionResult ShowAllShoppingCarts()
