@@ -1,13 +1,34 @@
-﻿.metric-tab-container
-{
-    display: flex;
-    flex-direction:column;
+
+body {
+    background-color: #0E0B16;
+    min-width:100%;
 }
+.mb-3, .my-3 {
+    margin-bottom: 0px;
+}
+
+.container {
+    min-width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.metric-tab-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #c07dff;
+}
+    .metric-tab-container > h1{
+        align-self: center;
+        margin-top: 100px;
+    }
 .three-dashboard-tiles {
     display: flex;
     justify-content: space-around;
-    margin-top: 60px;
+    margin-top: 20px;
+    align-self: center;
+    width: 80%;
 }
+
 
 .metrics-tab {
     display: flex;
@@ -15,10 +36,13 @@
     width: 100%;
 }
 
+.metrics-tab-move-left{
+    position:relative;
+    transition: right 3s;
+    right: 0;
+}
 .metrics-tab-disabled {
-    
     display: none;
-    transition:ease-in linear 0.2s;
 }
 .dashboard-tile {
     display: flex;
@@ -26,10 +50,12 @@
     flex-direction: column;
     text-align: center;
     padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.7) 0px 3px 8px;
     min-width: 200px;
     min-height: 250px;
     flex-wrap: nowrap;
+    background-color: rgba(255,255,255, 1.0);
+    border-radius: 5.5px;
 }
 
 .dashboard-tile > P {
@@ -49,6 +75,7 @@
 .metrics-tab-selected {
     align-self:center;
     margin-top: 50px;
+    margin-bottom: 30px;
 }
 
     .metrics-tab-selected span {
@@ -64,13 +91,26 @@
 .customer-list-heading {
     text-align: center;
     margin-top: 70px;
-    text-decoration: underline;
     font-weight: 400;
+    color: #e7efdd
 }
 
-.cust-cart-display{
+.cust-cart-container {
+    display: flex;
+    flex-direction: column;
+
+}
+.cust-cart-display {
+    color: #e7efdd;
+    padding: 15px;
+    align-self: center;
+    background-color: RGBA(255,255,255,0.1);
+    width: 85%;
     height: 400px;
     font-size: large;
+    box-shadow: #000000 5px 10px 10px;
+    height: auto;
+    border-radius: 5.5px;
 }
 
 .main-order-table {

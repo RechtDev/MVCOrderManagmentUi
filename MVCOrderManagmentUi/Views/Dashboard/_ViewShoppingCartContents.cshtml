@@ -2,40 +2,42 @@
 <link rel="stylesheet" href="~/css/DashboardStyles.css" />
 <h2 class="customer-list-heading">Customers Carts</h2>
 
-<div class="cust-cart-display">
-    <table class="main-order-table">
-        <thead>
-            <tr>
-                <td>Cart ID#</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var cart in Model.ShoppingCarts)
-            {
-                <tr class="cartIdRow">
-                    <td>
-                        <p class="row-text"><button class="dropdown-icon-arrow-btn"><i class="fa-solid fa-angles-down"></i></button>@cart.Key</p>
-                        <table class="cart-item-table cart-item-table-style">
-                            <thead>
-                                <tr>
-                                    <td>Item Name</td>
-                                    <td>Cost</td>
-                                    <td>Item Type</td>
-                                </tr>
-                            </thead>
-                            @foreach (var item in cart)
-                            {
-                        <tr>
-                            <td>@item.Prod.ProdName</td>
-                            <td>@item.Prod.ProdPrice.ToString("C")</td>
-                            <td>@item.Prod.ProdType</td>
-                        </tr>
-                            }
-                        </table>
-                    </td>
-                    
+<div class="cust-cart-container">
+    <div class="cust-cart-display">
+        <table class="main-order-table">
+            <thead>
+                <tr>
+                    <td>Cart ID#</td>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>   
+            </thead>
+            <tbody>
+                @foreach (var cart in Model.ShoppingCarts)
+                {
+                    <tr class="cartIdRow">
+                        <td>
+                            <p class="row-text"><button class="dropdown-icon-arrow-btn"><i class="fa-solid fa-angles-down"></i></button>@cart.Key</p>
+                            <table class="cart-item-table cart-item-table-style">
+                                <thead>
+                                    <tr>
+                                        <td>Item Name</td>
+                                        <td>Cost</td>
+                                        <td>Item Type</td>
+                                    </tr>
+                                </thead>
+                                @foreach (var item in cart)
+                                {
+                                    <tr>
+                                        <td>@item.Prod.ProdName</td>
+                                        <td>@item.Prod.ProdPrice.ToString("C")</td>
+                                        <td>@item.Prod.ProdType</td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

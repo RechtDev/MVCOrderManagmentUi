@@ -1,15 +1,33 @@
-﻿
+
 .filter-btn {
     outline: none;
     border: none;
     background: none;
 }
-.display-products {
-    margin-top: 100px;
+
+.products-container {
     display: flex;
+    flex-direction: column;
+    z-index: 0;
+}
+
+    .products-container h1 {
+        align-self: center;
+        color: #e7efdd;
+        margin-top: 140px;
+    }
+.display-products {
+    margin-top: 10px;
+    display: flex;
+    background-color: RGBA(255,255,255,0.1);
+    color: white;
+    box-shadow: #000000 5px 10px 10px;
+    align-self: center;
+    border-radius: 5.5px;
+    padding: 15px;
     justify-content: center;
     flex-direction: column;
-    width: 100%;
+    width: 85%;
 }
 
     .display-products div {
@@ -21,16 +39,44 @@
         border-bottom: 2px black solid;
     }
 
-.products-table thead > tr > td {
-    padding: 0px 0px 0px 30px;
+.products-table thead > tr > th {
+    padding: 30px 0px 15px 30px;
 }
 
 .products-table tbody > tr > td {
     padding: 30px 0px 15px 30px;
 }
 
+.prod-btn
+{
+    background-color: #4717F6;
+}
+
 .edit-form-container {
     margin-top: 200px;
     display: flex;
     justify-content: center;
+}
+
+.verify-delete-modal-container{
+    background:white;
+    position:relative;
+    /* height: 400px; */
+    /* width: 400px; */
+    z-index: 1;
+}
+
+.verify-delete-modal
+{
+   background-color: orange;
+   height: 200px;
+}
+
+.modal-dialog {
+   min-height: 200px;
+   margin-top:18%;
+   width: 300px;
+}
+.modal-dialog-centered{
+    height: 20px;
 }

@@ -4,57 +4,67 @@
     ViewData["Title"] = "ViewProducts";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-
-<h1>ViewProducts</h1>
-
-<div class="display-products">
-    <table class="products-table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProdName)
-                    <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodname">
-                        <i class="fa-solid fa-arrow-down-a-z"></i>
-                    </a>
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProdPrice)
-                    <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodprice">
-                        <i class="fa-solid fa-arrow-down-9-1"></i>
-                    </a>
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProdType)
-                    <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodtype">
-                        <i class="fa-solid fa-arrow-down-a-z"></i>
-                    </a>
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @item.ProdName
-                    </td>
-                    <td>
-                        @item.ProdPrice.ToString("C")
-                    </td>
-                    <td>
-                        @item.ProdType
-                    </td>
-                    <td>
-                        <a class="btn btn-sm btn-primary" asp-action="EditProduct" asp-route-prodId="@item.ProdId">Edit</a> |
-                        <a class="btn btn-sm btn-primary" asp-action="ViewProduct" asp-route-prodId="@item.ProdId">Details</a> |
-                        <a class="btn btn-sm btn-warning" asp-action="DeleteProduct" asp-route-prodId="@item.ProdId">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <div>
-        <a class="btn btn-group-lg  btn-outline-primary" asp-action="AddNewProduct">Add Product</a>
+<partial name="_VerifyDeleteModal">
+    <div class="products-container">
+        <h1>View Products(@Model.Count())</h1>
+        <div class="display-products">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProdName)
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodname" asp-route-des="false">
+                                <i class="fa-solid fa-arrow-down-a-z"></i>
+                            </a>
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodname" asp-route-des="true">
+                                <i class="fa-solid fa-arrow-down-z-a"></i>
+                            </a>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProdPrice)
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodprice" asp-route-des="false">
+                                <i class="fa-solid fa-arrow-down-1-9"></i>
+                            </a>
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodprice" asp-route-des="true">
+                                <i class="fa-solid fa-arrow-down-9-1"></i>
+                            </a>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProdType)
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodtype" asp-route-des="false">
+                                <i class="fa-solid fa-arrow-down-a-z"></i>
+                            </a>
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodtype" asp-route-des="true">
+                                <i class="fa-solid fa-arrow-down-z-a"></i>
+                            </a>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.ProdName
+                            </td>
+                            <td>
+                                @item.ProdPrice.ToString("C")
+                            </td>
+                            <td>
+                                @item.ProdType
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-primary prod-btn" asp-action="EditProduct" asp-route-prodId="@item.ProdId">Edit</a> |
+                                <a class="btn btn-sm btn-primary prod-btn" asp-action="ViewProduct" asp-route-prodId="@item.ProdId">Details</a> |
+                                <a class="btn btn-sm btn-warning" @*asp-action="DeleteProduct" asp-route-prodId="@item.ProdId"*@ data-toggle="modal" data-target="#deleteModal">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                <a class="btn btn-group-lg  btn-outline-primary" asp-action="AddNewProduct">Add Product</a>
+            </div>
+        </div>
     </div>
-</div>

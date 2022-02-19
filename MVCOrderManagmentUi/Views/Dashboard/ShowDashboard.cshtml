@@ -5,6 +5,7 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 <div class="metric-tab-container">
+    <h1>Your eCommerce Metrics</h1>    
     <div class="three-dashboard-tiles">
         <div class="metrics-tab-button">
             <button id="metricPanelLeftBtn">
@@ -22,7 +23,7 @@
             </div>
             <div class="dashboard-tile">
                 <p>@Model.ItemsInCarts</p>
-                <h4>Poetential Sold</h4>
+                <h4>Potential Sold</h4>
             </div>
         </section>
         <section class="metrics-tab metrics-tab-disabled" role="tab">
@@ -67,5 +68,5 @@
         <span><i class="fa-solid fa-grip-lines"></i></span>
         <span><i class="fa-solid fa-grip-lines"></i></span>
     </div>
-</div>>
+</div>
 <partial name="_ViewShoppingCartContents">

@@ -15,7 +15,7 @@ namespace MVCOrderManagmentUi.Controllers
         {
             _context = context;
         }
-        public IActionResult ViewProducts(string filterby)
+        public IActionResult ViewProducts(string filterby, bool? des)
         {
             List<Product> Results = new List<Product>();
             switch (filterby)
@@ -24,15 +24,40 @@ namespace MVCOrderManagmentUi.Controllers
                     Results = _context.Products.ToList();
                     break;
                 case "prodname":
-                    Results = _context.Products.OrderBy(x => x.ProdName).ToList();
-                    break;
+                    if (des == true)
+                    {
+                        Results = _context.Products.OrderByDescending(x => x.ProdName).ToList();
+                        break;
+                    }
+                    else 
+                    {
+                        Results = _context.Products.OrderBy(x => x.ProdName).ToList();
+                        break;
+                    }  
                 case "prodprice":
-                    Results = _context.Products.OrderByDescending(x => x.ProdPrice).ToList();
-                    break;
+                    if (des == true)
+                    {
+                        Results = _context.Products.OrderByDescending(x => x.ProdPrice).ToList();
+                        break;
+                    }
+                    else
+                    {
+                        Results = _context.Products.OrderBy(x => x.ProdPrice).ToList();
+                        break;
+                    }
                 case "prodtype":
-                    Results = _context.Products.OrderBy(x => x.ProdType).ToList();
-                    break;
+                    if (des == true)
+                    {
+                        Results = _context.Products.OrderByDescending(x => x.ProdType).ToList();
+                        break;
+                    }
+                    else
+                    {
+                        Results = _context.Products.OrderBy(x => x.ProdType).ToList();
+                        break;
+                    }
                 default:
+                    Results = _context.Products.ToList();
                     break;
             }
             return View(Results);
