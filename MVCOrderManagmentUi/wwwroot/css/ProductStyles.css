@@ -58,25 +58,20 @@
     justify-content: center;
 }
 
-.verify-delete-modal-container{
-    background:white;
-    position:relative;
-    /* height: 400px; */
-    /* width: 400px; */
-    z-index: 1;
+.content {
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
+    -webkit-transition: opacity 500ms ease, -webkit-filter 500ms ease;
+    transition: opacity 500ms ease, -webkit-filter 500ms ease;
+    transition: filter 500ms ease, opacity 500ms ease;
+    transition: filter 500ms ease, opacity 500ms ease, -webkit-filter 500ms ease;
 }
-
-.verify-delete-modal
+.modal-content {
+    background: rgb(3 3 4);
+    color: #e7efdd;
+}
+.modal-header
 {
-   background-color: orange;
-   height: 200px;
-}
-
-.modal-dialog {
-   min-height: 200px;
-   margin-top:18%;
-   width: 300px;
-}
-.modal-dialog-centered{
-    height: 20px;
+    font-size: 1.5em;
 }

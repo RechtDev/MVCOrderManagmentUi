@@ -11,10 +11,8 @@ function onDomLoaded() {
     for (var i = 0; i < rowbutton.length; i++) {
         rowbutton[i].id = `CartDropDownButtonId${i + 1}`;
         rowbutton[i].onclick = function (e) {
-            var contents = this.parentElement.nextElementSibling.classList.toggle("cart-item-table");
-            
-        }
-        
+        this.parentElement.nextElementSibling.classList.toggle("cart-item-table");
+        }  
     }
 
     let metricPanelButtonLeft = document.getElementById("metricPanelLeftBtn");
@@ -57,5 +55,15 @@ function onDomLoaded() {
             metricTabs[currentTab].classList.toggle("metrics-tab-disabled");
 
         }
+    });
+
+    let contentWrapper = document.querySelector('.content');
+    let modalWrapper = document.querySelector('.verify-delete-modal-container');
+    let modalButtons = document.querySelectorAll('#toggleDeleteModalBtn');
+    modalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            contentWrapper.classList.toggle("verify-delete-modal--active");
+            modalWrapper.classList.toggle("verify-delete-modal--active");
+        });
     });
 }

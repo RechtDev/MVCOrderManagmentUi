@@ -79,12 +79,32 @@ namespace MVCOrderManagmentUi.Controllers
             _context.SaveChanges();
             return RedirectToAction("ViewProducts",routeValues: new {filterby = "none"});
         }
-        public async Task<IActionResult> DeleteProduct(int? prodId)
+        public IActionResult DeleteProduct(int? prodId, bool? forceDelete)
         {
-            var productToBeDeleted = await _context.Products.FirstOrDefaultAsync(x=>x.ProdId == prodId);
-            _context.Products.Remove(productToBeDeleted);
-            await _context.SaveChangesAsync();
+            if (forceDelete == true)
+            {
+                _context.ShoppingCartContents.Remove(_context.ShoppingCartContents.FirstOrDefault(x => x.ProdId == prodId));
+                var productToBeDeleted = _context.Products.FirstOrDefault(x => x.ProdId == prodId);
+                _context.Products.Remove(productToBeDeleted);
+                _context.SaveChanges();
+            }
+            else
+            {
+                var productToBeDeleted = _context.Products.FirstOrDefault(x => x.ProdId == prodId);
+                _context.Products.Remove(productToBeDeleted);
+                _context.SaveChanges();
+            }
             return RedirectToAction("ViewProducts", routeValues: new { filterby = "none" });
+        }
+
+        [HttpGet]
+        public IActionResult GetDeleteModal(int? prodId)
+        {
+            if (_context.ShoppingCartContents.Any(x=>x.ProdId == prodId))
+            {
+                return PartialView("_DeleteModal", _context.Products.FirstOrDefault(x=>x.ProdId == prodId));
+            }
+            return RedirectToAction("DeleteProduct", routeValues: new { prodId = prodId, forceDelete = "true"});
         }
     }
 }
