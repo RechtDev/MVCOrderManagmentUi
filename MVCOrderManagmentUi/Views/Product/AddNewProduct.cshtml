@@ -1,4 +1,4 @@
-﻿@model MVCOrderManagmentUi.Models.Product
+﻿@model MVCOrderManagmentUi.Data.CreateProductDto
 
 @{
     ViewData["Title"] = "AddNewProduct";
@@ -15,19 +15,25 @@
             <form method="post" class="prod-form">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="ProdName" class="control-label">Name</label>
-                    <input asp-for="ProdName" class="form-control" />
-                    <span asp-validation-for="ProdName" class="text-danger"></span>
+                    <label asp-for="Product.ProdName" class="control-label">Name</label>
+                    <input asp-for="Product.ProdName" class="form-control" />
+                    <span asp-validation-for="Product.ProdName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ProdPrice" class="control-label">Price</label>
-                    <input asp-for="ProdPrice" class="form-control" />
-                    <span asp-validation-for="ProdPrice" class="text-danger"></span>
+                    <label asp-for="Product.ProdPrice" class="control-label">Price</label>
+                    <input asp-for="Product.ProdPrice" class="form-control" />
+                    <span asp-validation-for="Product.ProdPrice" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ProdType" class="control-label">Type</label>
-                    <input asp-for="ProdType" class="form-control" />
-                    <span asp-validation-for="ProdType" class="text-danger"></span>
+                    <label asp-for="Product.ProdType" class="control-label">Type</label>
+                    <input type="text" list="ProductTypes" asp-for="Product.ProdType" class="form-control" />
+                    <datalist id="ProductTypes"> 
+                        @foreach(var item in Model.ProductType)
+                           {
+                             <option>@item</option>     
+                           }
+                    </datalist>
+                    <span asp-validation-for="Product.ProdType" class="text-danger"></span>
                 </div>
                  <div class="btn-prod-form">
                   <button class="btn btn-default" type="submit">
@@ -40,7 +46,7 @@
 </div>
 
 <div>
-    <a asp-action="Index"><i class="fa-solid fa-arrow-left-long icons"></i></a>
+    <a asp-action="ViewProducts"><i class="fa-solid fa-arrow-left-long icons"></i></a>
 </div>
 
 @section Scripts {
