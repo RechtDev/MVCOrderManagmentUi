@@ -1,0 +1,25 @@
+﻿@model MVCOrderManagmentUi.Models.Product
+<div id="viewProductDetailsModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p>View Details</p>
+                <button type="button" class="close" onclick="closeModal()" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Product: @Model.ProdName<br>Item#: @Model.ProdId<br>Price: @Model.ProdPrice.ToString("C")<br>Product Type: @Model.ProdType</p>
+            </div>
+            <div class="modal-footer">
+                <span><a href="#" class="btn btn-light" onclick="closeModal()">Close!</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function closeModal() {
+        $("#viewProductDetailsModal").hide();
+    }
+</script>

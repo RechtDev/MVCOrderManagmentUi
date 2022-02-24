@@ -76,7 +76,8 @@ namespace MVCOrderManagmentUi.Models
 
             modelBuilder.Entity<ShoppingCartContent>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e=> e.ShoppingCartContentID)
+                .HasName("PK__ShoppingC__shopp__2982930DB");
 
                 entity.ToTable("ShoppingCart_Contents");
 

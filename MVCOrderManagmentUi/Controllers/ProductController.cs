@@ -83,7 +83,7 @@ namespace MVCOrderManagmentUi.Controllers
         {
             if (forceDelete == true)
             {
-                _context.ShoppingCartContents.Remove(_context.ShoppingCartContents.FirstOrDefault(x => x.ProdId == prodId));
+                _context.ShoppingCartContents.RemoveRange(_context.ShoppingCartContents.Where(x=>x.ProdId == prodId));
                 var productToBeDeleted = _context.Products.FirstOrDefault(x => x.ProdId == prodId);
                 _context.Products.Remove(productToBeDeleted);
                 _context.SaveChanges();
@@ -105,6 +105,12 @@ namespace MVCOrderManagmentUi.Controllers
                 return PartialView("_DeleteModal", _context.Products.FirstOrDefault(x=>x.ProdId == prodId));
             }
             return RedirectToAction("DeleteProduct", routeValues: new { prodId = prodId, forceDelete = "true"});
+        }
+
+        public IActionResult ViewDetails(int? prodId)
+        {
+            var product = _context.Products.FirstOrDefault(x=>x.ProdId == prodId);
+            return PartialView("_ViewDetails", product);
         }
     }
 }

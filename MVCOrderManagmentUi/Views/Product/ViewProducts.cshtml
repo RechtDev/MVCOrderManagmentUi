@@ -56,8 +56,7 @@
                         </td>
                         <td>
                             <a class="btn btn-sm btn-primary prod-btn" asp-action="EditProduct" asp-route-prodId="@item.ProdId">Edit</a> |
-                            <a class="btn btn-sm btn-primary prod-btn" asp-action="ViewProduct" asp-route-prodId="@item.ProdId">Details</a> |
-                            @*<a class="btn btn-sm btn-warning" asp-action="DeleteProduct" asp-route-prodId="@item.ProdId" id="toggleDeleteModalBtn">Delete</a>*@
+                            <a class="btn btn-sm btn-primary prod-btn" onclick="viewDetailModal(@item.ProdId)">Details</a> |
                             <a class="btn btn-sm btn-warning" onclick="deleteModal(@item.ProdId)" id="toggleDeleteModalBtn">Delete</a>
                         </td>
                     </tr>
@@ -71,6 +70,9 @@
 </div>
 
 <div id="deleteModal">
+
+</div>
+<div id="detailsModal">
 
 </div>
 <script type="text/javascript">
@@ -89,7 +91,7 @@
                 }
                 else {
                     location.reload();
-                }  
+                }
             },
             error: function (err) {
 
@@ -97,6 +99,30 @@
 
         });
     }
+    function viewDetailModal(productId) {
+        $.ajax({
+            url: '@Url.Action("ViewDetails","Product")',
+            data: { prodId: productId },
+            contentType: "application/html",
+            dataType: "html",
+            type: "Get",
+            success: function (data) {
+                if (data.toString().length < 1100) {
+                    $("#detailsModal").html(data);
+                    $("#viewProductDetailsModal").show();
+                }
+                else {
+                    location.reload();
+                }
+            },
+            error: function (err) {
+
+            }
+
+        });
+    }
+
+
 
 
 </script>
