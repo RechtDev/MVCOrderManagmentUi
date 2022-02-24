@@ -73,22 +73,79 @@ namespace MVCOrderManagmentUi.Migrations
 
             modelBuilder.Entity("MVCOrderManagmentUi.Models.ShoppingCartContent", b =>
                 {
+                    b.Property<int>("ShoppingCartContentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int?>("ProdId")
                         .HasColumnType("int")
                         .HasColumnName("prod_id");
 
-                    b.Property<int>("ShoppingCartContentID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ShoppingCartId")
                         .HasColumnType("int")
                         .HasColumnName("shoppingCart_id");
+
+                    b.HasKey("ShoppingCartContentID")
+                        .HasName("PK__ShoppingC__shopp__2982930DB");
 
                     b.HasIndex("ProdId");
 
                     b.HasIndex("ShoppingCartId");
 
                     b.ToTable("ShoppingCart_Contents");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityUsers");
                 });
 
             modelBuilder.Entity("MVCOrderManagmentUi.Models.ShoppingCartContent", b =>

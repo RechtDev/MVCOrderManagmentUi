@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MVCOrderManagmentUi.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ namespace MVCOrderManagmentUi.Controllers
         {
             _context = context;
         }
+        [Authorize]
         public IActionResult ViewProducts(string filterby, bool? des)
         {
             List<Product> Results = new List<Product>();
@@ -63,6 +64,7 @@ namespace MVCOrderManagmentUi.Controllers
             return View(Results);
         }
         [HttpGet]
+        [Authorize]
         public IActionResult AddNewProduct()
         {
             return View();

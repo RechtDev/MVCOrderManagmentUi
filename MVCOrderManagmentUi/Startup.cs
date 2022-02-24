@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +31,14 @@ namespace MVCOrderManagmentUi
             services.AddDbContext<GSparkShopDBContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<GSparkShopDBContext>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/account/login";
+                options.LogoutPath = $"/account/logout";
+                options.AccessDeniedPath = $"/account/accessDenied";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

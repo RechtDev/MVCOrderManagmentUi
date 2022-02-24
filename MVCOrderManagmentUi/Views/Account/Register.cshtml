@@ -1,0 +1,25 @@
+﻿@model MVCOrderManagmentUi.Data.DTOs.UserRegistrationDto
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="login-container">
+    <div class="login-form-centered">
+        <form action="register" method="post">
+            <label asp-for="Email" class="col-form-label"></label>
+            <input asp-for="Email" class="form-control" placeholder="Email/" />
+
+            <label asp-for="UserName" class="col-form-label"></label>
+            <input asp-for="UserName" class="form-control" placeholder="User Name/" />
+
+            <label asp-for="Password" class="col-form-label"></label>
+            <input asp-for="Password" class="form-control" placeholder="Password/" />
+
+            <label asp-for="ConfrimPassword" class="col-form-label"></label>
+            <input asp-for="ConfrimPassword" class="form-control" placeholder="Retype Password/" />
+            <button type="submit" class="btn btn-success">SIgn Up!</button>
+            <a asp-action="Register" asp-controller="account">Don't have an account?Click to Register</a>  
+        </form>
+    </div>
+</div>

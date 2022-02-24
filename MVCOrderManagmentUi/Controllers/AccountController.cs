@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MVCOrderManagmentUi.Data.DTOs;
@@ -20,7 +19,7 @@ namespace MVCOrderManagmentUi.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        [HttpPost, AllowAnonymous]
+        [HttpGet, AllowAnonymous]
         public IActionResult Register()
         {
             UserRegistrationDto model = new UserRegistrationDto();
@@ -104,7 +103,18 @@ namespace MVCOrderManagmentUi.Controllers
                 {
                     return View("AccountLocked");
                 }
+                else
+                {
+                    ModelState.AddModelError("message", "Invalid login Attempt");
+                    return View(loginDTO);
+                }
             }
+            return View(loginDTO);
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("login", "account");
         }
     } 
 }
