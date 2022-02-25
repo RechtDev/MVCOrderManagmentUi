@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MVCOrderManagmentUi.Data.DTOs;
-using System;
-using System.Collections.Generic;
+using MVCOrderManagmentUi.Models.Identity;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -12,9 +12,9 @@ namespace MVCOrderManagmentUi.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -35,7 +35,7 @@ namespace MVCOrderManagmentUi.Controllers
 
                 if (userCheck == null)
                 {
-                    var user = new IdentityUser
+                    var user = new AppUser
                     {
                         UserName = request.UserName,
                         NormalizedUserName = request.UserName,
@@ -93,7 +93,8 @@ namespace MVCOrderManagmentUi.Controllers
                     ModelState.AddModelError("message", "Invalid credentials");
                     return View(loginDTO);
                 }
-                var result = await signInManager.PasswordSignInAsync(loginDTO.Email,loginDTO.Password,loginDTO.RememberMe, true);
+
+                var result = await signInManager.PasswordSignInAsync(user.UserName,loginDTO.Password,loginDTO.RememberMe, false);
                 if (result.Succeeded)
                 {
                     await userManager.AddClaimAsync(user, new Claim("UserRole", "Admin"));
@@ -102,6 +103,11 @@ namespace MVCOrderManagmentUi.Controllers
                 else if (result.IsLockedOut)
                 {
                     return View("AccountLocked");
+                }
+                else if(result.IsNotAllowed)
+                {
+                    ModelState.AddModelError("message", "Account Disabled");
+                    return View(loginDTO);
                 }
                 else
                 {

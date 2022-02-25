@@ -4,22 +4,24 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<div class="login-container">
-    <div class="login-form-centered">
-        <form action="register" method="post">
+<div class="register-form-container">
+    <div class="register-form-display">
+        <h1>Create  a New Account!</h1>
+        <form class="login-form" action="register" method="post">
             <label asp-for="Email" class="col-form-label"></label>
-            <input asp-for="Email" class="form-control" placeholder="Email/" />
-
+            <input asp-for="Email" class="form-control" placeholder="Email" />
+            <p><span asp-validation-for="Email"></span></p>
             <label asp-for="UserName" class="col-form-label"></label>
-            <input asp-for="UserName" class="form-control" placeholder="User Name/" />
-
+            <input asp-for="UserName" class="form-control" placeholder="User Name" />
+            <p><span asp-validation-for="UserName"></span></p>
             <label asp-for="Password" class="col-form-label"></label>
-            <input asp-for="Password" class="form-control" placeholder="Password/" />
-
+            <input asp-for="Password" class="form-control" placeholder="Password" />
+            <p><span asp-validation-for="Password"></span></p>
             <label asp-for="ConfrimPassword" class="col-form-label"></label>
-            <input asp-for="ConfrimPassword" class="form-control" placeholder="Retype Password/" />
+            <input asp-for="ConfrimPassword" type="password" class="form-control" placeholder="Retype Password" />
+            <p><span asp-validation-for="ConfrimPassword"></span></p>
             <button type="submit" class="btn btn-success">SIgn Up!</button>
-            <a asp-action="Register" asp-controller="account">Don't have an account?Click to Register</a>  
+            <a asp-action="Login" asp-controller="account">Already have an account? Login in!</a>
         </form>
     </div>
 </div>

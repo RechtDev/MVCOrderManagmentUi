@@ -1,0 +1,21 @@
+﻿.register-form-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10%;
+    height: auto;
+    margin-bottom: 15%;
+}
+
+.register-form-display {
+    box-shadow: #000000 5px 10px 10px;
+    background-color: RGBA(255,255,255,0.1);
+    padding: 20px;
+    color: #e7efdd;
+    width: 40%;
+    align-self: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
