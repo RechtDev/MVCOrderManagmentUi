@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MVCOrderManagmentUi.Data;
+using MVCOrderManagmentUi.Data.DTOs;
 using MVCOrderManagmentUi.Models;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace MVCOrderManagmentUi.Controllers
         {
             _context = context;
         }
+        [Authorize]
         public IActionResult ShowDashboard()
         {
             DTO = new DashboardDTO

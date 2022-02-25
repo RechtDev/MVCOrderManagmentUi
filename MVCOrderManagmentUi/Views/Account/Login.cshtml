@@ -1,0 +1,29 @@
+﻿@model MVCOrderManagmentUi.Data.DTOs.UserLoginDTO
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="login-form-container">
+    <h1>Login</h1>
+    <div class="login-form-display">
+        <img src="~/Images/login-user-img.png" alt="PLACE GENERIC FACE HERE" />
+        <form class="login-form" action="Login" method="post">
+            <label asp-for="Email" class="col-form-label"></label>
+            <input asp-for="Email" type="text" class="input-group" placeholder="Email" autocomplete="on" autofocus/>
+            <p><span asp-validation-for="Email"></span></p>
+
+            <label asp-for="Password" class="col-form-label"></label>
+            <input asp-for="Password" type="password" class="input-group" placeholder="Password"/>
+            <p><span asp-validation-for="Password"></span></p>
+            <div class="login-form-panel">
+                <button type="submit" class="btn btn-success">Login</button>
+                <div>
+                    <input asp-for="RememberMe" type="checkbox"/>
+                    <label asp-for="RememberMe" class="col-form-label">Remember Me</label>
+                </div>
+            </div>
+            <p><a asp-action="Register" asp-controller="account">Don't have an account?Click to Register</a></p>
+        </form>
+    </div>
+</div>
