@@ -1,81 +1,178 @@
 ﻿@model IEnumerable<MVCOrderManagmentUi.Models.Product>
 
-@{
-    ViewData["Title"] = "ViewProducts";
-    Layout = "~/Pages/Shared/_Layout.cshtml";
-}
-@*<partial name="_VerifyDeleteModal">*@
-<div class="products-container">
-    <h1>View Products(@Model.Count())</h1>
-    <div class="display-products">
-        <table class="products-table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProdName)
-                        <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodname" asp-route-des="false">
-                            <i class="fa-solid fa-arrow-down-a-z"></i>
-                        </a>
-                        <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodname" asp-route-des="true">
-                            <i class="fa-solid fa-arrow-down-z-a"></i>
-                        </a>
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProdPrice)
-                        <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodprice" asp-route-des="false">
-                            <i class="fa-solid fa-arrow-down-1-9"></i>
-                        </a>
-                        <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodprice" asp-route-des="true">
-                            <i class="fa-solid fa-arrow-down-9-1"></i>
-                        </a>
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProdType)
-                        <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodtype" asp-route-des="false">
-                            <i class="fa-solid fa-arrow-down-a-z"></i>
-                        </a>
-                        <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodtype" asp-route-des="true">
-                            <i class="fa-solid fa-arrow-down-z-a"></i>
-                        </a>
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @item.ProdName
-                        </td>
-                        <td>
-                            @item.ProdPrice.ToString("C")
-                        </td>
-                        <td>
-                            @item.ProdType
-                        </td>
-                        <td>
-                            <a class="btn btn-sm btn-primary prod-btn" asp-action="EditProduct" asp-route-prodId="@item.ProdId">Edit</a> |
-                            <a class="btn btn-sm btn-primary prod-btn" onclick="viewDetailModal(@item.ProdId)">Details</a> |
-                            <a class="btn btn-sm btn-warning" onclick="deleteModal(@item.ProdId)" id="toggleDeleteModalBtn">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <div>
-            <a class="btn btn-group-lg  btn-outline-primary" asp-action="AddNewProduct">Add Product</a>
+    @{
+        ViewData["Title"] = "ViewProducts";
+        Layout = "~/Pages/Shared/_Layout.cshtml";
+    }
+
+
+    
+
+<script src="~/js/product.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <div class="container">
+  
+
+
+        <div class="form-group">
+        
+
         </div>
+        <ul id="productsList"></ul>
     </div>
-</div>
 
-<div id="deleteModal">
+    <h4>Product</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+         
+        </div>
+        <div class="display-products">
 
-</div>
-<div id="detailsModal">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProdName)
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodname" asp-route-des="false">
+                                <i class="fa-solid fa-arrow-down-a-z"></i>
+                            </a>
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodname" asp-route-des="true">
+                                <i class="fa-solid fa-arrow-down-z-a"></i>
+                            </a>
+                            <input type="text" placeholder="Search" id="productsearchbar"/>
+                        </th>
 
-</div>
-<script type="text/javascript">
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProdPrice)
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodprice" asp-route-des="false">
+                                <i class="fa-solid fa-arrow-down-1-9"></i>
+                            </a>
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodprice" asp-route-des="true">
+                                <i class="fa-solid fa-arrow-down-9-1"></i>
+                            </a>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProdType)
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodtype" asp-route-des="false">
+                                <i class="fa-solid fa-arrow-down-a-z"></i>
+                            </a>
+                            <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodtype" asp-route-des="true">
+                                <i class="fa-solid fa-arrow-down-z-a"></i>
+                            </a>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="ProductTable">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.ProdName
+                            </td>
+                            <td>
+                                @item.ProdPrice.ToString("C")
+                            </td>
+                            <td>
+                                @item.ProdType
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-primary prod-btn" asp-action="EditProduct" asp-route-prodId="@item.ProdId">Edit</a> |
+                                <a class="btn btn-sm btn-primary prod-btn" onclick="viewDetailModal(@item.ProdId)">Details</a> |
+                                <a class="btn btn-sm btn-warning" onclick="deleteModal(@item.ProdId)" id="toggleDeleteModalBtn">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+
+
+            <div>
+                <a class="btn btn-group-lg  btn-outline-primary" asp-action="AddNewProduct">Add Product</a>
+            </div>
+        </div >
+    </div>
+
+
+    <script>
+        $(() => {
+            getProducts();
+
+            $('#search-input').on('keyup', () => {
+                getProducts();
+            });
+        });
+
+        function getProducts({
+            $ajax({
+                url: '@Url.Action("SearchProducts", "Product")',
+                dataType: "html",
+                method: 'GET',
+                data: { searchText: $('#search-input').val() },
+                success: function (res) {
+                    $('#gridSearchResults').html('').html(res);
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+
+    </script>
+
+    @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    @*<partial name="_VerifyDeleteModal">
+        *@
+
+
+        @*<div class="products-container">
+            <h1>View Products(@Model.Count())</h1>
+
+            <h1 class="mb-2">Manage Books</h1>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h5 class="mt-1"><a asp-action="Add">Add a book</a></h5>
+                </li>
+                <li class="list-group-item">
+                    <form asp-action="Search" method="post" class="form-inline">
+                        <h5 class="mt-1 mr-5">Find a book</h5>
+                        <label>Search Term:</label>
+                        <input asp-for="SearchTerm" class="form-control ml-2 mr-2">
+                        Search By:
+                        <label class="radio-inline">
+                            <input type="radio" class="form-control ml-2 mr-2"
+                                   asp-for="Type" value="book" checked>Title
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" class="form-control ml-2 mr-2"
+                                   asp-for="Type" value="author">Author
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" class="form-control ml-2 mr-2"
+                                   asp-for="Type" value="genre">Genre
+                        </label>
+                        <button type="submit" class="ml-2 mr-2">Find</button>
+                        <span asp-validation-for="SearchTerm" class="text-danger"></span>
+                    </form>
+                </li>
+            </ul>*@
+
+        <
+
+
+        <div id="deleteModal">
+
+        </div>
+        <div id="detailsModal">
+
+        </div>
+        <script type="text/javascript">
 
     function deleteModal(productId) {
         $.ajax({
@@ -125,4 +222,4 @@
 
 
 
-</script>
+        </script>

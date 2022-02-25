@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 #nullable disable
 
@@ -96,9 +99,12 @@ namespace MVCOrderManagmentUi.Models
                     .HasConstraintName("FK__ShoppingC__shopp__286302EC");
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            //OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        }
+
+       // partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
-}
+
