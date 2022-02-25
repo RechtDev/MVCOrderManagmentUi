@@ -1,44 +1,55 @@
-﻿@model MVCOrderManagmentUi.Models.Product
+﻿@model MVCOrderManagmentUi.Data.CreateProductDto
 
 @{
     ViewData["Title"] = "AddNewProduct";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>AddNewProduct</h1>
+<h1 class="Text">Add New Product</h1>
 
-<h4>Product</h4>
+<h4 class="Text">Product</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProdName" class="control-label"></label>
-                <input asp-for="ProdName" class="form-control" />
-                <span asp-validation-for="ProdName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProdPrice" class="control-label"></label>
-                <input asp-for="ProdPrice" class="form-control" />
-                <span asp-validation-for="ProdPrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProdType" class="control-label"></label>
-                <input asp-for="ProdType" class="form-control" />
-                <span asp-validation-for="ProdType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="new-prod-form-container">
+    <div class="">
+        <div>
+            <form method="post" class="prod-form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Product.ProdName" class="control-label">Name</label>
+                    <input asp-for="Product.ProdName" class="form-control" />
+                    <span asp-validation-for="Product.ProdName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Product.ProdPrice" class="control-label">Price</label>
+                    <input asp-for="Product.ProdPrice" class="form-control" />
+                    <span asp-validation-for="Product.ProdPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Product.ProdType" class="control-label">Type</label>
+                    <input type="text" list="ProductTypes" asp-for="Product.ProdType" class="form-control" />
+                    <datalist id="ProductTypes"> 
+                        @foreach(var item in Model.ProductType)
+                           {
+                             <option>@item</option>     
+                           }
+                    </datalist>
+                    <span asp-validation-for="Product.ProdType" class="text-danger"></span>
+                </div>
+                 <div class="btn-prod-form">
+                  <button class="btn btn-default" type="submit">
+                    <i type="submit" class="bi bi-plus-circle icons"></i>
+                  </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="ViewProducts"><i class="fa-solid fa-arrow-left-long icons"></i></a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+

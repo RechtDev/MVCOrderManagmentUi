@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MVCOrderManagmentUi.Models.Identity;
 

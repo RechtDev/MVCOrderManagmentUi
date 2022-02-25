@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MVCOrderManagmentUi.Data;
 using MVCOrderManagmentUi.Models;
 using System;
 using System.Collections.Generic;
@@ -67,16 +69,18 @@ namespace MVCOrderManagmentUi.Controllers
         [Authorize]
         public IActionResult AddNewProduct()
         {
-            return View();
+            CreateProductDto NewProductDetails = new CreateProductDto();
+            NewProductDetails.ProductType = _context.Products.Select(x => x.ProdType).Distinct().ToList();
+            return View(NewProductDetails);
         }
         [HttpPost]
-        public IActionResult AddNewProduct([FromForm]string prodName, [FromForm] decimal prodPrice, [FromForm] string prodType)
+        public IActionResult AddNewProduct(CreateProductDto createProductDto)
         {
             _context.Products.Add(new Product
             {
-                ProdName = prodName,
-                ProdPrice = prodPrice,
-                ProdType = prodType
+                ProdName = createProductDto.Product.ProdName,
+                ProdPrice = createProductDto.Product.ProdPrice,
+                ProdType = createProductDto.Product.ProdType
             });
             _context.SaveChanges();
             return RedirectToAction("ViewProducts",routeValues: new {filterby = "none"});

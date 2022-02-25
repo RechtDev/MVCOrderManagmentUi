@@ -4,6 +4,7 @@
     ViewData["Title"] = "ViewProducts";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+<script src="~/js/product.js"></script>
 @*<partial name="_VerifyDeleteModal">*@
 <div class="products-container">
     <h1>View Products(@Model.Count())</h1>
@@ -19,6 +20,7 @@
                         <a class="filter-btn" asp-action="ViewProducts" asp-route-filterby="prodname" asp-route-des="true">
                             <i class="fa-solid fa-arrow-down-z-a"></i>
                         </a>
+                        <input type="text" placeholder="Search" id="productsearchbar"/>
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.ProdPrice)
@@ -41,7 +43,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="ProductTable">
                 @foreach (var item in Model)
                 {
                     <tr>
