@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MVCOrderManagmentUi.Models.Identity;
+using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
