@@ -1,7 +1,12 @@
+.hug-top
+{
+    top: -50px;
+}
+
 .login-form-container {
     display: flex;
     justify-content: center;
-    flex-direction:column;
+    flex-direction: column;
     margin-top: 10%;
     height: auto;
     margin-bottom: 15%;

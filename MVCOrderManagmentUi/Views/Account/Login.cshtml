@@ -3,14 +3,7 @@
     ViewData["Title"] = "Login";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-
 <div class="login-form-container">
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Alert!</strong>
-        <button type="button" class="btn" data-bs-dismiss="alert" aria-label="Close">
-
-        </button>
-    </div>
     <h1>Login</h1>
     <div class="login-form-display">
         <img src="~/Images/login-user-img.png" alt="PLACE GENERIC FACE HERE" />
@@ -28,7 +21,7 @@
             <div class="login-form-panel">
                 <button type="submit" class="btn btn-success">Login</button>
                 <div>
-                    <input asp-for="RememberMe" type="checkbox"/>
+                    <input asp-for="RememberMe" type="checkbox" />
                     <label asp-for="RememberMe" class="col-form-label">Remember Me</label>
                 </div>
             </div>
