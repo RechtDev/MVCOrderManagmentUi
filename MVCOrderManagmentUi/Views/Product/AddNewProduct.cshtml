@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <label asp-for="Product.ProdName" class="control-label">Name</label>
                     <input asp-for="Product.ProdName" class="form-control" />
-                    <span asp-validation-for="Product.ProdName" class="text-danger"></span>
+                    <p><span class="text-warning" asp-validation-for="Product.ProdName"></span></p>
                 </div>
                 <div class="form-group">
                     <input asp-for="Product.ProdPrice" class="form-control" />
