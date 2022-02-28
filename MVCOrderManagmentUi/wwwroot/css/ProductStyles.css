@@ -4,6 +4,27 @@
     justify-content: center;
 }
 
+#priceProdInput:before
+{
+    content: "$";
+}
+
+.dollar {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+    .dollar input {
+        padding-left: 15px;
+    }
+
+    .dollar:before {
+        position: absolute;
+        content: "$";
+        left: 5px;
+        top: 6px;
+    }
 .prod-form {
     width: 100%;
 }

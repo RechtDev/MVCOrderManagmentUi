@@ -4,7 +4,7 @@
     ViewData["Title"] = "AddNewProduct";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-
+<script  type="text/javascript" src="~/js/AddProduct.js"> </script>
 <h1 class="Text">Add New Product</h1>
 <hr />
 <div class="new-prod-form-container">
@@ -14,12 +14,14 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Product.ProdName" class="control-label">Name</label>
-                    <input asp-for="Product.ProdName" class="form-control" />
+                    <input asp-for="Product.ProdName" class="form-control"/>
                     <span asp-validation-for="Product.ProdName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Product.ProdPrice" class="control-label">Price</label>
-                    <input asp-for="Product.ProdPrice" class="form-control" />
+                    <div class="dollar">
+                        <input asp-for="Product.ProdPrice" class="form-control" id="priceProdInput" />
+                    </div>
                     <span asp-validation-for="Product.ProdPrice" class="text-danger"></span>
                 </div>
                 <div class="form-group">
