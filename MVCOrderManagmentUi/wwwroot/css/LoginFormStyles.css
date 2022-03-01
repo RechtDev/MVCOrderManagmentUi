@@ -1,11 +1,15 @@
-﻿.login-form-container {
+.hug-top
+{
+    top: -50px;
+}
+
+.login-form-container {
     display: flex;
     justify-content: center;
-    flex-direction:column;
+    flex-direction: column;
     margin-top: 10%;
     height: auto;
     margin-bottom: 15%;
-    
 }
 
 .login-form-container > h1{
@@ -17,7 +21,7 @@
     background-color: RGBA(255,255,255,0.1);
     padding: 20px;
     color: #e7efdd;
-    width: 22%;
+    min-width: 30%;
     align-self:center;
     height:300px;
     display:flex;
@@ -34,7 +38,7 @@
 .login-form{
     margin-top:  15px;
 }
-.login-form input {
+.input-form-30m {
     margin-bottom: 30px;
 }
 
