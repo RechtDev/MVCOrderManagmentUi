@@ -74,6 +74,7 @@ namespace MVCOrderManagmentUi.Controllers
             return View(NewProductDetails);
         }
         [HttpPost]
+        [Authorize]
         public IActionResult AddNewProduct(CreateProductDto createProductDto)
         {
             _context.Products.Add(new Product
@@ -112,11 +113,25 @@ namespace MVCOrderManagmentUi.Controllers
             }
             return RedirectToAction("DeleteProduct", routeValues: new { prodId = prodId, forceDelete = "true"});
         }
-
+        [HttpGet]
         public IActionResult ViewDetails(int? prodId)
         {
             var product = _context.Products.FirstOrDefault(x=>x.ProdId == prodId);
             return PartialView("_ViewDetails", product);
+        }
+        [HttpGet]
+        public IActionResult EditDetails(int? prodId)
+        {
+            var product = _context.Products.FirstOrDefault(x => x.ProdId == prodId);
+            return PartialView("_EditProduct", product);
+        }
+        [HttpPost]
+        public IActionResult EditDetails(Product editedProduct)
+        {
+          
+            _context.Products.Update(editedProduct);
+            _context.SaveChanges();
+            return RedirectToAction("ViewProducts", routeValues: new { filterby = "none" });
         }
     }
 }
