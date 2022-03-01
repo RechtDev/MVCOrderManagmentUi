@@ -18,12 +18,13 @@
                     <p><span class="text-warning" asp-validation-for="Product.ProdName"></span></p>
                 </div>
                 <div class="form-group">
-                    <input asp-for="Product.ProdPrice" class="form-control" />
+                    <label asp-for="Product.ProdPrice" class="control-label">Product Price</label>
+                    <div class="dollar"><input asp-for="Product.ProdPrice" class="form-control" id="priceProdInput" /></div>
                     <p><span class="text-warning" asp-validation-for="Product.ProdPrice"></span></p>
                 </div>
                 <div class="form-group">
                     <label asp-for="Product.ProdType" class="control-label">Type</label>
-                    <input type="text" list="ProductTypes" asp-for="Product.ProdType" class="form-control" />
+                    <input list="ProductTypes" asp-for="Product.ProdType" class="form-control" />
                     <p><span class="text-warning" asp-validation-for="Product.ProdType"></span></p>
                     <datalist id="ProductTypes"> 
                         @foreach(var item in Model.ProductType)

@@ -4,11 +4,6 @@
     justify-content: center;
 }
 
-#priceProdInput:before
-{
-    content: "$";
-}
-
 .dollar {
     display: inline-block;
     position: relative;
