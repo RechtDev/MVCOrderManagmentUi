@@ -1,0 +1,52 @@
+﻿@model MVCOrderManagmentUi.Models.Product
+
+<div id="editProductDetailsModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Product Details</h3>
+                <button type="button" class="close" onclick="closeModal()" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="EditDetails" method="post" class="prod-form edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ProdId" class="control-label">Product ID</label>
+                        <input asp-for="ProdId" type="text" class="form-control" disabled />
+                        <input asp-for="ProdId" type="text" class="form-control" hidden/>
+                        <p><span class="text-warning" asp-validation-for="ProdName"></span></p>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProdName" class="control-label">Name</label>-
+                        <input asp-for="ProdName" class="form-control" />
+                        <p><span class="text-warning" asp-validation-for="ProdName"></span></p>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProdPrice" class="control-label">Product Price</label>
+                        <div class="dollar"><input asp-for="ProdPrice" class="form-control" id="priceProdInput" /></div>
+                        <p><span class="text-warning" asp-validation-for="ProdPrice"></span></p>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProdType" class="control-label">Type</label>
+                        <input type="text" class="form-control" value="@Model.ProdType" disabled />
+                        <input asp-for="ProdType" type="text" class="form-control" hidden />
+                        <p><span class="text-warning" asp-validation-for="ProdType"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <span><button type="submit" class="btn btn-success">Save Changes!</button></span>
+                        <span><a href="#" class="btn btn-light" onclick="closeModal()">Close!</a></span>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function closeModal() {
+        $("#editProductDetailsModal").hide();
+    }
+</script>

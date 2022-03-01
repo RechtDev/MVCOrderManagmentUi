@@ -21,6 +21,10 @@
         top: 6px;
     }
 .prod-form {
+    width: 500px;
+}
+
+.prod-form.edit {
     width: 100%;
 }
 
@@ -119,10 +123,6 @@
     display: flex;
     justify-content: center;
     width: 100%;
-}
-
-.prod-form {
-    width: 500px;
 }
 
 
