@@ -1,0 +1,12 @@
+﻿.header-display {
+    color: #e7efdd;
+    margin-top: 10vh;
+    width: 45vw;
+    margin: 40px;
+}
+
+.header-display-content {
+    color: #e7efdd;
+    margin: 40px;
+    font-size: large;
+}
