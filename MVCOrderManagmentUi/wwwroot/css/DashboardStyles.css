@@ -153,3 +153,7 @@ body {
     border: none;
     background: none;
 }
+
+.dollar{
+    color: black !important;
+}
