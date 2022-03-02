@@ -11,14 +11,45 @@
         <section role="dialog">
             <span>What Can We Offer</span>
             <p>Ut takimata consequat consequat duo sed nulla ea invidunt in lobortis labore veniam liber amet tation sed kasd gubergren dolore eos justo aliquyam invidunt sed commodo stet sed takimata wisi odio aliquyam et nonumy dolor sadipscing ut kasd consequat sea</p>
-            <span><a href="#">Check Out A Demo</a></span>
+            <span><a asp-controller="Account" asp-action="Login" class="btn btn-info">Check Out A Demo</a></span>
         </section>
-        <div class="flex-column ">
+        <div class="card-display">
+            <div class="card-display-header">
+                <h2>
+                    Every Account Has These Perks
+                </h2>
+            </div>
             <div class="card">
+                <div class="card-header border-info">
+                    <h4>Security</h4>
+                </div>
                 <div class="card-body">
-                    hi
+                    <ul>
+                        <li>256-bit enecryption used to store data</li>
+                        <li>Redundant servers backed by Microsoft Azure&copy;</li>
+                        <li>User classes to support orginzational logins</li>
+                        <li>Verification before deleting entries</li>
+                    </ul>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header border-info">
+                    <h4>Ease Of Use</h4>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Automatically Import store data from: SQL, MongoDb, Cassandra&bdquo;</li>
+                        <li>Metrics At A Glance</li>
+                        <li>Intuitive UI</li>
+                        <li>UX Designs with customers in mind</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header-display-content-footer">
+            <button class="btn btn-success">
+                Interested? Look at our pricing and start out with a <strong>free 30-day trial</strong>
+            </button>
         </div>
     </div>
 </div>
